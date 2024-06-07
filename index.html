@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>SAE23_données</title>
-    <meta http-equiv="refresh" content="120" />               <!-- Will refresh page every 2 minutes -->
     <link rel="stylesheet" type="text/css" href="PAGE CSS" /> <!-- METTRE CSS ICI -->
 </head>
 
@@ -12,7 +11,6 @@
     <header>
         <table>
             <tr>
-                <td>Données</td>
                 <td><a href="data.html">Données</a></td>
                 <td><a href="gestion.html">Gestion</a></td>
                 <td><a href="admin.html">Administration</a></td>
@@ -21,58 +19,9 @@
             </tr>
         </table> <!-- Bouton pour retourner sur la page précédence -->
     </header>
-    <div>                       <!-- Duplicate from here...  -->
-    <h2>Bâtiment E</h2>
-    <table>
-        <td>
-            <table>
-                <tr>
-                    <td colspan="2">                                             <!-- Row 1 -->
-                        E101 <!-- Gather room number -->
-                    </td>
-                    <!-- ADD HERE ROW X FOR ROOM NUMBER -->                     <!-- Row X -->
-                </tr>
-                <tr>
-                    <td>Temp<!-- Gather value type --></td> 
-                    <td>Humid<!-- Gather value type --></td>
-                </tr>
-                <tr>
-                <td>23°C<!-- Gather value --></td>                <!-- Row 1 -->
-                <td>52%<!-- Gather value --></td>
-                <!-- ADD HERE ROW X FOR VALUE TYPE -->                         <!-- Row X -->
-                </tr>
-                <tr>
-                    <td colspan="2">07/06/2024 à 9:54<!-- Gather date --></td>
-                    <!-- ADD HERE ROW X FOR VALUE  -->                           <!-- Row X -->
-                </tr>
-                
-            </table>
-        </td>
-        <td>
-            <table>
-                <tr>
-                    <td colspan="2">                                             <!-- Row 1 -->
-                        E102 <!-- Gather rooom number -->
-                    </td>
-                    <!-- ADD HERE ROW X FOR ROOM NUMBER -->                     <!-- Row X -->
-                </tr>
-                <tr>
-                    <td>Temp<!-- Gather value type --></td>
-                    <td>Humid<!-- Gather value type --></td>
-                </tr>
-                <tr>
-                <td>24°C<!-- Gather value --></td>                <!-- Row 1 -->
-                <td>58%<!-- Gather value --></td>
-                <!-- ADD HERE ROW X FOR VALUE TYPE -->                         <!-- Row X -->
-                </tr>
-                <tr>
-                    <td colspan="2">07/06/2024 à 9:56<!-- Gather date --></td>
-                    <!-- ADD HERE ROW X FOR VALUE  -->                           <!-- Row X -->
-                </tr>
-                
-            </table>
-        </td>
-    </table>
-    </div>                      <!-- to here in order to add a building -->
+    <div>                       
+    <h1>SAE 23</h1>
+    <p>La saé 23 consiste à récupérer des données de capteurs à l&rsquo;aide d&rsquo;un broker mqtt, les inscrire dans une table sql, et ensuite les afficher sur ce site dynamiquement. Cette page d&rsquo;acceuil permet d&rsquo;accéder à l&rsquo;administration du site, sa gestion, notre organisation pour ce projet, et la consultation des données en cliquant sur les boutons dans le header:</p>
+    </div>                      
 </body>
 </html>
