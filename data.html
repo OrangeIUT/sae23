@@ -1,69 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>SAE23_données</title>
+    <meta http-equiv="refresh" content="120" />               <!-- Will refresh page every 2 minutes -->
     <link rel="stylesheet" type="text/css" href="PAGE CSS" /> <!-- METTRE CSS ICI -->
-    
 </head>
 
 <body>
-    <div>
-        <div>
-            <h3>Retour</h3> <!-- Bouton pour retourner sur la page précédence -->
-        </div>
-        <h2>Bâtiment E</h2>
-        <table>
-            <td>
-                <table>
-                    <tr>
-                        <td colspan="2">                                             <!-- Row 1 -->
-                            E101 <!-- Ici récupérer numéro salle -->
-                        </td>
-                        <!-- ADD HERE ROW X FOR ROOM NUMBER -->                     <!-- Row X -->
-                    </tr>
-                    <tr>
-                        <td>Temp</td>
-                        <td>Humid</td>
-                    </tr>
-                    <tr>
-                    <td>23°C<!-- Ici récupérer valeur --></td>                <!-- Row 1 -->
-                    <td>52%<!-- Ici récupérer valeur --></td>
-                    <!-- ADD HERE ROW X FOR VALUE TYPE -->                         <!-- Row X -->
-                    </tr>
-                    <tr>
-                        <td colspan="2">07/06/2024 à 9:54<!-- Ici récupérer valeur --></td>
-                        <!-- ADD HERE ROW X FOR VALUE  -->                           <!-- Row X -->
-                    </tr>
-                    
-                </table>
-            </td>
-            <td>
-                <table>
-                    <tr>
-                        <td colspan="2">                                             <!-- Row 1 -->
-                            E102 <!-- Ici récupérer numéro salle -->
-                        </td>
-                        <!-- ADD HERE ROW X FOR ROOM NUMBER -->                     <!-- Row X -->
-                    </tr>
-                    <tr>
-                        <td>Temp</td>
-                        <td>Humid</td>
-                    </tr>
-                    <tr>
-                    <td>24°C<!-- Ici récupérer valeur --></td>                <!-- Row 1 -->
-                    <td>58%<!-- Ici récupérer valeur --></td>
-                    <!-- ADD HERE ROW X FOR VALUE TYPE -->                         <!-- Row X -->
-                    </tr>
-                    <tr>
-                        <td colspan="2">07/06/2024 à 9:56<!-- Ici récupérer valeur --></td>
-                        <!-- ADD HERE ROW X FOR VALUE  -->                           <!-- Row X -->
-                    </tr>
-                    
-                </table>
-            </td>
-        </table>
-    </div>
+    <header>
+        <h3>Retour</h3> <!-- Bouton pour retourner sur la page précédence -->
+    </header>
+    <div>                       <!-- Duplicate from here...  -->
+    <h2>Bâtiment E</h2>
+    <table>
+        <td>
+            <table>
+                <tr>
+                    <td colspan="2">                                             <!-- Row 1 -->
+                        E101 <!-- Gather room number -->
+                    </td>
+                    <!-- ADD HERE ROW X FOR ROOM NUMBER -->                     <!-- Row X -->
+                </tr>
+                <tr>
+                    <td>Temp<!-- Gather value type --></td> 
+                    <td>Humid<!-- Gather value type --></td>
+                </tr>
+                <tr>
+                <td>23°C<!-- Gather value --></td>                <!-- Row 1 -->
+                <td>52%<!-- Gather value --></td>
+                <!-- ADD HERE ROW X FOR VALUE TYPE -->                         <!-- Row X -->
+                </tr>
+                <tr>
+                    <td colspan="2">07/06/2024 à 9:54<!-- Gather date --></td>
+                    <!-- ADD HERE ROW X FOR VALUE  -->                           <!-- Row X -->
+                </tr>
+                
+            </table>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td colspan="2">                                             <!-- Row 1 -->
+                        E102 <!-- Gather rooom number -->
+                    </td>
+                    <!-- ADD HERE ROW X FOR ROOM NUMBER -->                     <!-- Row X -->
+                </tr>
+                <tr>
+                    <td>Temp<!-- Gather value type --></td>
+                    <td>Humid<!-- Gather value type --></td>
+                </tr>
+                <tr>
+                <td>24°C<!-- Gather value --></td>                <!-- Row 1 -->
+                <td>58%<!-- Gather value --></td>
+                <!-- ADD HERE ROW X FOR VALUE TYPE -->                         <!-- Row X -->
+                </tr>
+                <tr>
+                    <td colspan="2">07/06/2024 à 9:56<!-- Gather date --></td>
+                    <!-- ADD HERE ROW X FOR VALUE  -->                           <!-- Row X -->
+                </tr>
+                
+            </table>
+        </td>
+    </table>
+    </div>                      <!-- to here in order to add a building -->
 </body>
-
 </html>
