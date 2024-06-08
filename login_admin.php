@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows == 1) {
         // Correct login
         $_SESSION['admin_loggedin'] = true;
-        header("Location: admin_main.php");
+        header("Location: administration.php");
         exit;
     } else {
         $error = "Identifiants incorrects.";

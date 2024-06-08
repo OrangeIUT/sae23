@@ -11,7 +11,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 include 'db_connect.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -24,8 +23,12 @@ include 'db_connect.php';
 
 <body>
     <header>
-        <h3><a href="logout.php">Déconnexion</a></h3> <!-- Destroy session cookie -->
-        <h3><a href="index.html">Déconnexion</a></h3>
+        <table>
+            <tr>
+                <td><h3><a href="logout.php">Déconnexion</a></h3></td><!-- Destroy session cookie -->
+                <td><h3><a href="index.html">Retour</a></h3></td>
+            </tr>
+        </table>
     </header>
     <div>
         <h2><?php echo $_SESSION['building_name']; ?></h2> <!-- Display building name from session -->
