@@ -11,6 +11,7 @@
 <body>
     <header>
         <h3><a href="logout.php">Déconnexion</a></h3> <!-- Destroy session cookie -->
+        <h3><a href="index.html">Déconnexion</a></h3>
     </header>
     <div>
         <h2><?php echo $_SESSION['building_name']; ?></h2> <!-- Display building name from session -->

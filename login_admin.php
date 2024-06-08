@@ -1,18 +1,16 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>SAE23_données</title>
+    <title>SAE23_données Administration</title>
     <meta http-equiv="refresh" content="120" /> <!-- Will refresh page every 2 minutes -->
     <link rel="stylesheet" type="text/css" href="PAGE CSS" /> <!-- METTRE CSS ICI -->
 </head>
 
 <body>
     <header>
-        <h3><a href="index.html">Retour</a></h3> <!-- Retourner à la page d'accueil -->
+        <h3><a href="index.html">Retour</a></h3>
     </header>
     <div>
         <form method="post" action="">
@@ -40,20 +38,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['login'];
     $password = $_POST['password'];
 
-    // SQL injection protection
+    // Protection against SQL injection
     $username = $conn->real_escape_string($username);
     $password = $conn->real_escape_string($password);
 
-    // Identity verification thru database
-    $sql = "SELECT * FROM login WHERE nom_gest = '$username' AND mdp_gest = '$password'";
+    // Verify login with DB
+    $sql = "SELECT * FROM administration WHERE id_admin = '$username' AND mdp_admin = '$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         // Correct login
-        $row = $result->fetch_assoc();
-        $_SESSION['building_name'] = $row['nom_bat'];
-        $_SESSION['loggedin'] = true;
-        header("Location: gestion.php");
+        $_SESSION['admin_loggedin'] = true;
+        header("Location: admin_main.php");
         exit;
     } else {
         $error = "Identifiants incorrects.";
