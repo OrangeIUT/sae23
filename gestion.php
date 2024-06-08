@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Connexion verification
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: login_gestion.php");
+    exit;
+}
+
+// Database login
+include 'db_connect.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
