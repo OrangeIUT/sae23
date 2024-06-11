@@ -51,6 +51,12 @@
 <?php
 session_start();
 
+// Check if connexion is already active
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    header("Location: administration.php");
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'db_connect.php';
 
