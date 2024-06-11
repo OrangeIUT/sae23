@@ -1,3 +1,52 @@
+<?php
+session_start();
+
+// Check if connexion is already active using cookies
+if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] === 'true') {
+    if ($_COOKIE['user_type'] === 'gestionnaire') {
+        header("Location: gestion.php");
+    }
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    include 'db_connect.php';
+
+    $username = $_POST['login'];
+    $password = $_POST['password'];
+
+    // SQL injection protection
+    $username = $conn->real_escape_string($username);
+    $password = $conn->real_escape_string($password);
+
+    // Check if the user is a manager
+    $gest_sql = "SELECT * FROM login WHERE nom_gest = '$username' AND mdp_gest = '$password'";
+    $gest_result = $conn->query($gest_sql);
+
+    if ($gest_result->num_rows == 1) {
+        // Correct manager login
+        $row = $gest_result->fetch_assoc();
+        $user_type = 'gestionnaire';
+        // Building name: in 'batiment' table, get the name of the building where the manager works
+        $building_sql = "SELECT nom_bat FROM batiment WHERE nom_gest = '$username'";
+        $building_result = $conn->query($building_sql);
+
+        // Set cookies for logged in status, user type and building name
+        setcookie('loggedin', 'true', time() + (86400 * 30), "/"); // 30 days
+        setcookie('user_type', $user_type, time() + (86400 * 30), "/");
+        setcookie('building_name', $building_result, time() + (86400 * 30), "/");
+
+        // Redirection
+        header("Location: gestion.php");
+        exit;
+    } else {
+        $error = "Identifiants incorrects.";
+    }
+
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,15 +74,15 @@
 </header>
 <main>
     <section>
-    <h1>Connexion gestionnaire</h1>
+        <h1>Connexion gestionnaire</h1>
 
 
         <form method="post" action="">
-            <label for="login">Login:&nbsp;</label>
+            <label for="login">Nom d'utilisateur :&nbsp;</label>
             <label>
                 <input type="text" name="login" required>
             </label><br>
-            <label for="password">Password:&nbsp;</label>
+            <label for="password">Mot de passe :&nbsp;</label>
             <label>
                 <input type="password" name="password" required>
             </label><br>
@@ -48,42 +97,3 @@
 </main>
 </body>
 </html>
-
-<?php
-session_start();
-
-// Check if connexion is already active
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: gestion.php");
-    exit;
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include 'db_connect.php';
-
-    $username = $_POST['login'];
-    $password = $_POST['password'];
-
-    // SQL injection protection
-    $username = $conn->real_escape_string($username);
-    $password = $conn->real_escape_string($password);
-
-    // Identity verification through database
-    $sql = "SELECT * FROM login WHERE nom_gest = '$username' AND mdp_gest = '$password'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows == 1) {
-        // Correct login
-        $row = $result->fetch_assoc();
-        $_SESSION['building_name'] = $row['nom_bat'];
-        $_SESSION['loggedin'] = true;
-        header("Location: gestion.php");
-        exit;
-    } else {
-        $error = "Identifiants incorrects.";
-    }
-
-    $conn->close();
-}
-?>
-
