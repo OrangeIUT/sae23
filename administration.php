@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>SAE23 gestion Administration</title>
+    <title>SAE23 - Administration</title>
     <meta http-equiv="refresh" content="120" /> <!-- Will refresh page every 2 minutes -->
     <link rel="stylesheet" type="text/css" href="styles/style.css" /> <!-- Link to CSS file -->
 </head>
