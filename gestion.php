@@ -73,7 +73,7 @@ $building_name = isset($_COOKIE['building_name']) ? $_COOKIE['building_name'] : 
     <section>
         <table>
             <tr>
-                <th><h2>Statistiques</h2></th>
+                <th colspan="3"><h2>Statistiques</h2></th>
             </tr>
             <tr>
                 <td><h3>Minimum :</h3></td>

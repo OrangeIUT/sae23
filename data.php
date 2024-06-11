@@ -2,7 +2,6 @@
 // Database login
 include 'db_connect.php';
 
-// Fetch the active sensors and their last measured values, ordered by building and room
 $sql = "
 SELECT b.nom_bat, s.nom_salle, c.nom_capteur, m.date, m.valeur, c.unite_mesure 
 FROM capteur c
@@ -19,13 +18,20 @@ ORDER BY b.nom_bat, s.nom_salle, c.nom_capteur";
 
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    $sensors_data = [];
-    while ($row = $result->fetch_assoc()) {
-        $sensors_data[$row['nom_bat']][$row['nom_salle']][] = $row;
+// Check if the query was successful before attempting to fetch results
+if ($result) {
+    if ($result->num_rows > 0) {
+        $sensors_data = [];
+        while ($row = $result->fetch_assoc()) {
+            $sensors_data[$row['nom_bat']][$row['nom_salle']][] = $row;
+        }
+    } else {
+        $sensors_data = [];
     }
 } else {
-    $sensors_data = [];
+    // Handle the case where the query fails
+    echo "Error executing SQL query: " . $conn->error;
+    // You might want to log this error for further investigation
 }
 
 // Close the connection
@@ -44,7 +50,13 @@ $conn->close();
     <nav>
         <ul>
             <li><a href="index.html">Accueil</a></li>
-            <li><a href="logout.php">Déconnexion</a></li>
+            <li><a href="data.php">Données</a></li>
+            <li><a href="login_gestion.php">Gestion</a></li>
+            <li><a href="login_admin.php">Administration</a></li>
+            <li><a href="gantt.html">Gestion de projet</a></li>
+            <li><a href="http://localhost:1880/ui">NodeRed</a></li>
+            <li><a href="http://localhost:3000">Grafana</a></li>
+            <li><a href="mentions.html">Mentions légales</a></li>
         </ul>
     </nav>
 </header>
