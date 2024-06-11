@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>SAE23 - Login admin</title>
     <meta http-equiv="refresh" content="120"/> <!-- Will refresh page every 2 minutes -->
-    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/> <!-- METTRE CSS ICI -->
 </head>
 
 <body>
