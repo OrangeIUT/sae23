@@ -22,24 +22,27 @@
         </ul>
     </nav>
 </header>
-<div>
-    <form method="post" action="">
-        <label for="login">Login:&nbsp;</label>
-        <label>
-            <input type="text" name="login" required>
-        </label><br>
-        <label for="password">Password:&nbsp;</label>
-        <label>
-            <input type="password" name="password" required>
-        </label><br>
-        <input type="submit" value="Se connecter">
-    </form>
-    <?php
-    if (isset($error)) {
-        echo "<p style='color:red;'>$error</p>";
-    }
-    ?>
-</div>
+<main>
+    <h1>Connexion administrateur</h1>
+    <div>
+        <form method="post" action="">
+            <label for="login">Login:&nbsp;</label>
+            <label>
+                <input type="text" name="login" required>
+            </label><br>
+            <label for="password">Password:&nbsp;</label>
+            <label>
+                <input type="password" name="password" required>
+            </label><br>
+            <input type="submit" value="Se connecter">
+        </form>
+        <?php
+        if (isset($error)) {
+            echo "<p style='color:red;'>$error</p>";
+        }
+        ?>
+    </div>
+</main>
 </body>
 </html>
 

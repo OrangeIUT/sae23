@@ -66,32 +66,34 @@ $conn->close();
         </ul>
     </nav>
 </header>
-<div>
-    <?php foreach ($rooms as $room => $sensors): ?>
-        <h2>Bâtiment E</h2>
-        <table>
-            <tr>
-                <td colspan="2">
-                    <?= $room ?> <!-- Gather room number -->
-                </td>
-            </tr>
-            <tr>
-                <?php foreach ($sensors as $sensor): ?>
-                    <td><?= $sensor['type'] ?></td> <!-- Gather value type -->
-                <?php endforeach; ?>
-            </tr>
-            <tr>
-                <?php foreach ($sensors as $sensor): ?>
-                    <td><?= $sensor['valeur'] ?></td> <!-- Gather value -->
-                <?php endforeach; ?>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <?= date('d/m/Y à H:i', strtotime($sensors[0]['date'])) ?> <!-- Gather date and convert it -->
-                </td>
-            </tr>
-        </table>
-    <?php endforeach; ?>
-</div>
+<main>
+    <div>
+        <?php foreach ($rooms as $room => $sensors): ?>
+            <h2>Bâtiment E</h2>
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <?= $room ?> <!-- Gather room number -->
+                    </td>
+                </tr>
+                <tr>
+                    <?php foreach ($sensors as $sensor): ?>
+                        <td><?= $sensor['type'] ?></td> <!-- Gather value type -->
+                    <?php endforeach; ?>
+                </tr>
+                <tr>
+                    <?php foreach ($sensors as $sensor): ?>
+                        <td><?= $sensor['valeur'] ?></td> <!-- Gather value -->
+                    <?php endforeach; ?>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <?= date('d/m/Y à H:i', strtotime($sensors[0]['date'])) ?> <!-- Gather date and convert it -->
+                    </td>
+                </tr>
+            </table>
+        <?php endforeach; ?>
+    </div>
+</main>
 </body>
 </html>
