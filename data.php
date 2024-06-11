@@ -61,7 +61,8 @@ $conn->close();
             <li><a href="login_gestion.php">Gestion</a></li>
             <li><a href="login_admin.php">Administration</a></li>
             <li><a href="gantt.html">Gestion de projet</a></li>
-            <li><a href="http://localhost:1880/ui">Grafana</a></li>
+            <li><a href="http://localhost:1880/ui">NodeRed</a></li>
+            <li><a href="http://localhost:3000">Grafana</a></li>
             <li><a href="mentions.html">Mentions légales</a></li>
         </ul>
     </nav>
