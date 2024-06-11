@@ -104,210 +104,208 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </nav>
 </header>
 <main>
-    <div class="grid">
-        <section>
-            <h2>Gestion des bâtiments</h2>
-            <!-- Forms for building -->
-            <form method="post">
-                <h3>Créer un bâtiment</h3>
-                <label for="nom_bat">Nom du bâtiment :</label>
-                <label>
-                    <input type="text" name="nom_bat" maxlength="1" required>
-                </label>
-                <label for="nom_gest">Nom du gestionnaire :</label>
-                <label>
-                    <select name="nom_gest" required>
-                        <?php
-                        // Fetching existing managers
-                        $sql_managers = "SELECT nom_gest FROM login";
-                        $result_managers = $conn->query($sql_managers);
+    <section>
+        <h2>Gestion des bâtiments</h2>
+        <!-- Forms for building -->
+        <form method="post">
+            <h3>Créer un bâtiment</h3>
+            <label for="nom_bat">Nom du bâtiment :</label>
+            <label>
+                <input type="text" name="nom_bat" maxlength="1" required>
+            </label>
+            <label for="nom_gest">Nom du gestionnaire :</label>
+            <label>
+                <select name="nom_gest" required>
+                    <?php
+                    // Fetching existing managers
+                    $sql_managers = "SELECT nom_gest FROM login";
+                    $result_managers = $conn->query($sql_managers);
 
-                        if ($result_managers->num_rows > 0) {
-                            while ($row = $result_managers->fetch_assoc()) {
-                                echo "<option value='" . $row['nom_gest'] . "'>" . $row['nom_gest'] . "</option>";
-                            }
+                    if ($result_managers->num_rows > 0) {
+                        while ($row = $result_managers->fetch_assoc()) {
+                            echo "<option value='" . $row['nom_gest'] . "'>" . $row['nom_gest'] . "</option>";
                         }
-                        ?>
-                    </select>
-                </label>
-                <input type="submit" name="create_batiment" value="Créer bâtiment">
-            </form>
-            <form method="post">
-                <h3>Supprimer un bâtiment</h3>
-                <label for="nom_bat">Nom du bâtiment à supprimer :</label>
-                <label>
-                    <select name="nom_bat" required>
-                        <?php
-                        // Fetching existing buildings
-                        $sql_buildings = "SELECT nom_bat FROM batiment";
-                        $result_buildings = $conn->query($sql_buildings);
+                    }
+                    ?>
+                </select>
+            </label>
+            <input type="submit" name="create_batiment" value="Créer bâtiment">
+        </form>
+        <form method="post">
+            <h3>Supprimer un bâtiment</h3>
+            <label for="nom_bat">Nom du bâtiment à supprimer :</label>
+            <label>
+                <select name="nom_bat" required>
+                    <?php
+                    // Fetching existing buildings
+                    $sql_buildings = "SELECT nom_bat FROM batiment";
+                    $result_buildings = $conn->query($sql_buildings);
 
-                        if ($result_buildings->num_rows > 0) {
-                            while ($row = $result_buildings->fetch_assoc()) {
-                                echo "<option value='" . $row['nom_bat'] . "'>" . $row['nom_bat'] . "</option>";
-                            }
+                    if ($result_buildings->num_rows > 0) {
+                        while ($row = $result_buildings->fetch_assoc()) {
+                            echo "<option value='" . $row['nom_bat'] . "'>" . $row['nom_bat'] . "</option>";
                         }
-                        ?>
-                    </select>
-                </label>
-                <input type="submit" name="delete_batiment" value="Supprimer bâtiment">
-            </form>
-        </section>
-        <section>
-            <h2>Gestion des salles</h2>
-            <!-- Forms for rooms -->
-            <form method="post">
-                <h3>Créer une salle</h3>
-                <label for="nom_bat">Nom du bâtiment :</label>
-                <label>
-                    <select name="nom_bat" required>
-                        <?php
-                        // Fetching existing buildings
-                        $sql_buildings = "SELECT nom_bat FROM batiment";
-                        $result_buildings = $conn->query($sql_buildings);
+                    }
+                    ?>
+                </select>
+            </label>
+            <input type="submit" name="delete_batiment" value="Supprimer bâtiment">
+        </form>
+    </section>
+    <section>
+        <h2>Gestion des salles</h2>
+        <!-- Forms for rooms -->
+        <form method="post">
+            <h3>Créer une salle</h3>
+            <label for="nom_bat">Nom du bâtiment :</label>
+            <label>
+                <select name="nom_bat" required>
+                    <?php
+                    // Fetching existing buildings
+                    $sql_buildings = "SELECT nom_bat FROM batiment";
+                    $result_buildings = $conn->query($sql_buildings);
 
-                        if ($result_buildings->num_rows > 0) {
-                            while ($row = $result_buildings->fetch_assoc()) {
-                                echo "<option value='" . $row['nom_bat'] . "'>" . $row['nom_bat'] . "</option>";
-                            }
+                    if ($result_buildings->num_rows > 0) {
+                        while ($row = $result_buildings->fetch_assoc()) {
+                            echo "<option value='" . $row['nom_bat'] . "'>" . $row['nom_bat'] . "</option>";
                         }
-                        ?>
-                    </select>
-                </label>
-                <label for="nom_salle">Nom de la salle :</label>
-                <label>
-                    <input type="text" name="nom_salle" maxlength="35" required>
-                </label>
-                <label for="type">Type (CM, TD, TP ou NA) :</label>
-                <label>
-                    <select name="type" required>
-                        <option value="CM">CM</option>
-                        <option value="TD">TD</option>
-                        <option value="TP">TP</option>
-                        <option value="NA">Non défini</option>
-                    </select>
-                </label>
-                <label for="capacite">Capacité :</label>
-                <label>
-                    <input type="number" name="capacite" required>
-                </label>
+                    }
+                    ?>
+                </select>
+            </label>
+            <label for="nom_salle">Nom de la salle :</label>
+            <label>
+                <input type="text" name="nom_salle" maxlength="35" required>
+            </label>
+            <label for="type">Type (CM, TD, TP ou NA) :</label>
+            <label>
+                <select name="type" required>
+                    <option value="CM">CM</option>
+                    <option value="TD">TD</option>
+                    <option value="TP">TP</option>
+                    <option value="NA">Non défini</option>
+                </select>
+            </label>
+            <label for="capacite">Capacité :</label>
+            <label>
+                <input type="number" name="capacite" required>
+            </label>
 
-                <input type="submit" name="create_salle" value="Créer salle">
-            </form>
-            <form method="post">
-                <h3>Supprimer une salle</h3>
-                <label for="nom_salle">Nom de la salle à supprimer :</label>
-                <label>
-                    <select name="nom_salle" required>
-                        <?php
-                        // Fetching existing rooms
-                        $sql_rooms = "SELECT nom_salle FROM salle";
-                        $result_rooms = $conn->query($sql_rooms);
+            <input type="submit" name="create_salle" value="Créer salle">
+        </form>
+        <form method="post">
+            <h3>Supprimer une salle</h3>
+            <label for="nom_salle">Nom de la salle à supprimer :</label>
+            <label>
+                <select name="nom_salle" required>
+                    <?php
+                    // Fetching existing rooms
+                    $sql_rooms = "SELECT nom_salle FROM salle";
+                    $result_rooms = $conn->query($sql_rooms);
 
-                        if ($result_rooms->num_rows > 0) {
-                            while ($row = $result_rooms->fetch_assoc()) {
-                                echo "<option value='" . $row['nom_salle'] . "'>" . $row['nom_salle'] . "</option>";
-                            }
+                    if ($result_rooms->num_rows > 0) {
+                        while ($row = $result_rooms->fetch_assoc()) {
+                            echo "<option value='" . $row['nom_salle'] . "'>" . $row['nom_salle'] . "</option>";
                         }
-                        ?>
-                    </select>
-                </label>
-                <input type="submit" name="delete_salle" value="Supprimer salle">
-            </form>
-        </section>
-        <section>
-            <h2>Gestion des capteurs</h2>
-            <!-- Forms for sensors -->
-            <form method="post">
-                <h3>Créer un capteur</h3>
-                <label for="nom_salle">Nom de la salle :</label>
-                <label>
-                    <select name="nom_salle" required>
-                        <?php
-                        // Fetching existing rooms
-                        $sql_rooms = "SELECT nom_salle FROM salle";
-                        $result_rooms = $conn->query($sql_rooms);
+                    }
+                    ?>
+                </select>
+            </label>
+            <input type="submit" name="delete_salle" value="Supprimer salle">
+        </form>
+    </section>
+    <section>
+        <h2>Gestion des capteurs</h2>
+        <!-- Forms for sensors -->
+        <form method="post">
+            <h3>Créer un capteur</h3>
+            <label for="nom_salle">Nom de la salle :</label>
+            <label>
+                <select name="nom_salle" required>
+                    <?php
+                    // Fetching existing rooms
+                    $sql_rooms = "SELECT nom_salle FROM salle";
+                    $result_rooms = $conn->query($sql_rooms);
 
-                        if ($result_rooms->num_rows > 0) {
-                            while ($row = $result_rooms->fetch_assoc()) {
-                                echo "<option value='" . $row['nom_salle'] . "'>" . $row['nom_salle'] . "</option>";
-                            }
+                    if ($result_rooms->num_rows > 0) {
+                        while ($row = $result_rooms->fetch_assoc()) {
+                            echo "<option value='" . $row['nom_salle'] . "'>" . $row['nom_salle'] . "</option>";
                         }
-                        ?>
-                    </select>
-                </label>
-                <label for="type">Type :</label>
-                <label>
-                    <select name="type" required>
-                        <option value="temperature">Température</option>
-                        <option value="humidity">Humidité</option>
-                        <option value="co2">CO2</option>
-                        <option value="tvoc">TVOC</option>
-                        <option value="illumination">Luminosité</option>
-                        <option value="pressure">Pression</option>
-                    </select>
-                </label>
+                    }
+                    ?>
+                </select>
+            </label>
+            <label for="type">Type :</label>
+            <label>
+                <select name="type" required>
+                    <option value="temperature">Température</option>
+                    <option value="humidity">Humidité</option>
+                    <option value="co2">CO2</option>
+                    <option value="tvoc">TVOC</option>
+                    <option value="illumination">Luminosité</option>
+                    <option value="pressure">Pression</option>
+                </select>
+            </label>
 
-                <input type="submit" name="create_capteur" value="Créer capteur">
-            </form>
-            <form method="post">
-                <h3>Supprimer un capteur</h3>
-                <label for="nom_capteur">Nom du capteur à supprimer :</label>
-                <label>
-                    <select name="nom_capteur" required>
-                        <?php
-                        // Fetching existing sensors
-                        $sql_sensors = "SELECT nom_capteur FROM capteur";
-                        $result_sensors = $conn->query($sql_sensors);
+            <input type="submit" name="create_capteur" value="Créer capteur">
+        </form>
+        <form method="post">
+            <h3>Supprimer un capteur</h3>
+            <label for="nom_capteur">Nom du capteur à supprimer :</label>
+            <label>
+                <select name="nom_capteur" required>
+                    <?php
+                    // Fetching existing sensors
+                    $sql_sensors = "SELECT nom_capteur FROM capteur";
+                    $result_sensors = $conn->query($sql_sensors);
 
-                        if ($result_sensors->num_rows > 0) {
-                            while ($row = $result_sensors->fetch_assoc()) {
-                                echo "<option value='" . $row['nom_capteur'] . "'>" . $row['nom_capteur'] . "</option>";
-                            }
+                    if ($result_sensors->num_rows > 0) {
+                        while ($row = $result_sensors->fetch_assoc()) {
+                            echo "<option value='" . $row['nom_capteur'] . "'>" . $row['nom_capteur'] . "</option>";
                         }
-                        ?>
-                    </select>
-                </label>
-                <input type="submit" name="delete_capteur" value="Supprimer capteur">
-            </form>
-        </section>
-        <section>
-            <h2>Gestion des gestionnaires</h2>
-            <!-- Forms for managers -->
-            <form method="post">
-                <h3>Ajouter un gestionnaire</h3>
-                <label for="nom_gest">Nom du gestionnaire :</label>
-                <label>
-                    <input type="text" name="nom_gest" required>
-                </label>
-                <label for="mdp_gest">Mot de passe :</label>
-                <label>
-                    <input type="password" name="mdp_gest" required>
-                </label>
-                <input type="submit" name="create_gest" value="Ajouter gestionnaire">
-            </form>
-            <form method="post">
-                <h3>Supprimer un gestionnaire</h3>
-                <label for="nom_gest">Nom du gestionnaire à supprimer :</label>
-                <label>
-                    <select name="nom_gest" required>
-                        <?php
-                        // Fetching existing managers
-                        $sql_managers = "SELECT nom_gest FROM login";
-                        $result_managers = $conn->query($sql_managers);
+                    }
+                    ?>
+                </select>
+            </label>
+            <input type="submit" name="delete_capteur" value="Supprimer capteur">
+        </form>
+    </section>
+    <section>
+        <h2>Gestion des gestionnaires</h2>
+        <!-- Forms for managers -->
+        <form method="post">
+            <h3>Ajouter un gestionnaire</h3>
+            <label for="nom_gest">Nom du gestionnaire :</label>
+            <label>
+                <input type="text" name="nom_gest" required>
+            </label>
+            <label for="mdp_gest">Mot de passe :</label>
+            <label>
+                <input type="password" name="mdp_gest" required>
+            </label>
+            <input type="submit" name="create_gest" value="Ajouter gestionnaire">
+        </form>
+        <form method="post">
+            <h3>Supprimer un gestionnaire</h3>
+            <label for="nom_gest">Nom du gestionnaire à supprimer :</label>
+            <label>
+                <select name="nom_gest" required>
+                    <?php
+                    // Fetching existing managers
+                    $sql_managers = "SELECT nom_gest FROM login";
+                    $result_managers = $conn->query($sql_managers);
 
-                        if ($result_managers->num_rows > 0) {
-                            while ($row = $result_managers->fetch_assoc()) {
-                                echo "<option value='" . $row['nom_gest'] . "'>" . $row['nom_gest'] . "</option>";
-                            }
+                    if ($result_managers->num_rows > 0) {
+                        while ($row = $result_managers->fetch_assoc()) {
+                            echo "<option value='" . $row['nom_gest'] . "'>" . $row['nom_gest'] . "</option>";
                         }
-                        ?>
-                    </select>
-                </label>
-                <input type="submit" name="delete_gest" value="Supprimer gestionnaire">
-            </form>
-        </section>
-    </div>
+                    }
+                    ?>
+                </select>
+            </label>
+            <input type="submit" name="delete_gest" value="Supprimer gestionnaire">
+        </form>
+    </section>
 </main>
 </body>
 </html>
