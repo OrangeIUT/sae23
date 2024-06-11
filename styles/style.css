@@ -63,6 +63,12 @@ section {
     background-color: #ffe9ee;
 }
 
+section .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

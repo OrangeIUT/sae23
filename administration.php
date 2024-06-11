@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </nav>
 </header>
 <main>
-    <section>
+    <section class="grid">
         <h2>Gestion des bâtiments</h2>
         <!-- Forms for building -->
         <form method="post">
@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" name="delete_batiment" value="Supprimer bâtiment">
         </form>
     </section>
-    <section>
+    <section class="grid">
         <h2>Gestion des salles</h2>
         <!-- Forms for rooms -->
         <form method="post">
@@ -194,6 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" name="create_salle" value="Créer salle">
         </form>
         <form method="post">
+            <h3>Supprimer une salle</h3>
             <label for="nom_salle">Nom de la salle à supprimer :</label>
             <label>
                 <select name="nom_salle" required>
@@ -213,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" name="delete_salle" value="Supprimer salle">
         </form>
     </section>
-    <section>
+    <section class="grid">
         <h2>Gestion des capteurs</h2>
         <!-- Forms for sensors -->
         <form method="post">
@@ -269,7 +270,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" name="delete_capteur" value="Supprimer capteur">
         </form>
     </section>
-    <section>
+    <section class="grid">
         <h2>Gestion des gestionnaires</h2>
         <!-- Forms for managers -->
         <form method="post">
@@ -285,6 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" name="create_gest" value="Ajouter gestionnaire">
         </form>
         <form method="post">
+            <h3>Supprimer un gestionnaire</h3>
             <label for="nom_gest">Nom du gestionnaire à supprimer :</label>
             <label>
                 <select name="nom_gest" required>
