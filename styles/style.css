@@ -85,3 +85,8 @@ table tr:nth-child(even) {
 table tr:nth-child(odd) {
     background-color: #ffdaba;
 }
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}

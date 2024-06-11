@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Set the unit based on the sensor type
         switch ($type) {
             case 'temperature':
-                $unite = '°C';
+                $unite = '&deg;C';
                 break;
             case 'humidity':
                 $unite = '%';
@@ -105,14 +105,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </header>
 <main>
     <section>
-        <h2>Gestion des Bâtiments</h2>
+        <h2>Gestion des bâtiments</h2>
         <!-- Forms for building -->
         <form method="post">
+            <h3>Créer un bâtiment</h3>
             <label for="nom_bat">Nom du bâtiment :</label>
             <label>
                 <input type="text" name="nom_bat" maxlength="1" required>
             </label>
-            <label for="nom_gest">Nom du gestionnaire:</label>
+            <label for="nom_gest">Nom du gestionnaire :</label>
             <label>
                 <select name="nom_gest" required>
                     <?php
@@ -131,7 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" name="create_batiment" value="Créer bâtiment">
         </form>
         <form method="post">
-            <label for="nom_bat">Nom du bâtiment à supprimer:</label>
+            <h3>Supprimer un bâtiment</h3>
+            <label for="nom_bat">Nom du bâtiment à supprimer :</label>
             <label>
                 <select name="nom_bat" required>
                     <?php
@@ -151,10 +153,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </section>
     <section>
-        <h2>Gestion des Salles</h2>
+        <h2>Gestion des salles</h2>
         <!-- Forms for rooms -->
         <form method="post">
-            <label for="nom_bat">Nom du bâtiment:</label>
+            <h3>Créer une salle</h3>
+            <label for="nom_bat">Nom du bâtiment :</label>
             <label>
                 <select name="nom_bat" required>
                     <?php
@@ -170,11 +173,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     ?>
                 </select>
             </label>
-            <label for="nom_salle">Nom de la salle:</label>
+            <label for="nom_salle">Nom de la salle :</label>
             <label>
                 <input type="text" name="nom_salle" maxlength="35" required>
             </label>
-            <label for="type">Type (CM, TD, TP ou NA):</label>
+            <label for="type">Type (CM, TD, TP ou NA) :</label>
             <label>
                 <select name="type" required>
                     <option value="CM">CM</option>
@@ -183,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <option value="NA">Non défini</option>
                 </select>
             </label>
-            <label for="capacite">Capacité:</label>
+            <label for="capacite">Capacité :</label>
             <label>
                 <input type="number" name="capacite" required>
             </label>
@@ -191,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" name="create_salle" value="Créer salle">
         </form>
         <form method="post">
-            <label for="nom_salle">Nom de la salle à supprimer:</label>
+            <label for="nom_salle">Nom de la salle à supprimer :</label>
             <label>
                 <select name="nom_salle" required>
                     <?php
@@ -214,7 +217,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2>Gestion des capteurs</h2>
         <!-- Forms for sensors -->
         <form method="post">
-            <label for="nom_salle">Nom de la salle:</label>
+            <h3>Créer un capteur</h3>
+            <label for="nom_salle">Nom de la salle :</label>
             <label>
                 <select name="nom_salle" required>
                     <?php
@@ -245,7 +249,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" name="create_capteur" value="Créer capteur">
         </form>
         <form method="post">
-            <label for="nom_capteur">Nom du capteur à supprimer:</label>
+            <h3>Supprimer un capteur</h3>
+            <label for="nom_capteur">Nom du capteur à supprimer :</label>
             <label>
                 <select name="nom_capteur" required>
                     <?php
@@ -268,18 +273,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2>Gestion des gestionnaires</h2>
         <!-- Forms for managers -->
         <form method="post">
-            <label for="nom_gest">Nom du gestionnaire:</label>
+            <h3>Ajouter un gestionnaire</h3>
+            <label for="nom_gest">Nom du gestionnaire :</label>
             <label>
                 <input type="text" name="nom_gest" required>
             </label>
-            <label for="mdp_gest">Mot de passe:</label>
+            <label for="mdp_gest">Mot de passe :</label>
             <label>
                 <input type="password" name="mdp_gest" required>
             </label>
             <input type="submit" name="create_gest" value="Ajouter gestionnaire">
         </form>
         <form method="post">
-            <label for="nom_gest">Nom du gestionnaire à supprimer:</label>
+            <label for="nom_gest">Nom du gestionnaire à supprimer :</label>
             <label>
                 <select name="nom_gest" required>
                     <?php
