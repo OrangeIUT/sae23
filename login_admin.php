@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>SAE23_données Administration</title>
+    <title>SAE23 connexion Administration</title>
     <meta http-equiv="refresh" content="120" /> <!-- Will refresh page every 2 minutes -->
     <link rel="stylesheet" type="text/css" href="styles/style.css" /> <!-- METTRE CSS ICI -->
 </head>
