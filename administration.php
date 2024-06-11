@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </nav>
 </header>
 <main>
-    <div>
+    <section>
         <h2>Gestion des Bâtiments</h2>                                           <!-- Forms for building -->
         <form method="post">
             <label for="nom_bat">Nom du bâtiment:</label>
@@ -87,7 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </label>
             <input type="submit" name="delete_batiment" value="Supprimer Bâtiment">
         </form>
-
+    </section>
+    <section>
         <h2>Gestion des Salles</h2>                                           <!-- Forms for rooms -->
         <form method="post">
             <label for="nom_salle">Nom de la salle:</label>
@@ -115,7 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </label>
             <input type="submit" name="delete_salle" value="Supprimer Salle">
         </form>
-
+    </section>
+    <section>
         <h2>Gestion des Capteurs</h2>                                           <!-- Forms for sensors -->
         <form method="post">
             <label for="nom_capteur">Nom du capteur:</label>
@@ -143,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </label>
             <input type="submit" name="delete_capteur" value="Supprimer Capteur">
         </form>
-    </div>
+    </section>
 </main>
 </body>
 </html>

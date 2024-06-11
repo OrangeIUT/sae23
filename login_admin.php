@@ -24,8 +24,9 @@
     </nav>
 </header>
 <main>
+    <section>
     <h1>Connexion administrateur</h1>
-    <div>
+
         <form method="post" action="">
             <label for="login">Login:&nbsp;</label>
             <label>
@@ -42,7 +43,7 @@
             echo "<p style='color:red;'>$error</p>";
         }
         ?>
-    </div>
+    </section>
 </main>
 </body>
 </html>

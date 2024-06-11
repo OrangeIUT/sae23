@@ -31,7 +31,7 @@ include 'db_connect.php';
     </nav>
 </header>
 <main>
-    <div>
+    <section>
         <h2><?php echo $_SESSION['building_name']; ?></h2> <!-- Display building name from session -->
         <table>
             <tr>
@@ -60,6 +60,8 @@ include 'db_connect.php';
                 ?>
             </tr>
         </table>
+    </section>
+    <section>
         <table>
             <tr>
                 <th><h2>Statistiques</h2></th>
@@ -96,7 +98,7 @@ include 'db_connect.php';
                 ?>
             </tr>
         </table>
-    </div>
+    </section>
 </main>
 </body>
 </html>
