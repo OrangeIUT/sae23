@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>SAE23_données Administration</title>
     <meta http-equiv="refresh" content="120" /> <!-- Will refresh page every 2 minutes -->
-    <link rel="stylesheet" type="text/css" href="PAGE CSS" /> <!-- METTRE CSS ICI -->
+    <link rel="stylesheet" type="text/css" href="styles/style.css" /> <!-- METTRE CSS ICI -->
 </head>
 
 <body>
@@ -15,9 +15,13 @@
     <div>
         <form method="post" action="">
             <label for="login">Login:&nbsp;</label>
-            <input type="text" name="login" required><br>
+            <label>
+                <input type="text" name="login" required>
+            </label><br>
             <label for="password">Password:&nbsp;</label>
-            <input type="password" name="password" required><br>
+            <label>
+                <input type="password" name="password" required>
+            </label><br>
             <input type="submit" value="Se connecter">
         </form>
         <?php
