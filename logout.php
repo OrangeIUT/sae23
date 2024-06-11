@@ -11,3 +11,4 @@ session_destroy();
 header('Location: administration.php'); //Will execute script whenever something is cliocked in header
 exit;
 ?>
+

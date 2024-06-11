@@ -52,9 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>SAE23 gestion Administration</title>
+    <title>SAE23 - Administration</title>
     <meta http-equiv="refresh" content="120" /> <!-- Will refresh page every 2 minutes -->
-    <link rel="stylesheet" type="text/css" href="PAGE CSS" /> <!-- Link to CSS file -->
+    <link rel="stylesheet" type="text/css" href="styles/style.css" /> <!-- Link to CSS file -->
 </head>
 
 <body>
@@ -70,50 +70,76 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2>Gestion des Bâtiments</h2>                                           <!-- Forms for building -->
         <form method="post">
             <label for="nom_bat">Nom du bâtiment:</label>
-            <input type="text" name="nom_bat" required>
+            <label>
+                <input type="text" name="nom_bat" required>
+            </label>
             <label for="nom_gest">Nom du gestionnaire:</label>
-            <input type="text" name="nom_gest" required>
+            <label>
+                <input type="text" name="nom_gest" required>
+            </label>
             <input type="submit" name="create_batiment" value="Créer Bâtiment">
         </form>
         <form method="post">
             <label for="nom_bat">Nom du bâtiment à supprimer:</label>
-            <input type="text" name="nom_bat" required>
+            <label>
+                <input type="text" name="nom_bat" required>
+            </label>
             <input type="submit" name="delete_batiment" value="Supprimer Bâtiment">
         </form>
 
         <h2>Gestion des Salles</h2>                                           <!-- Forms for rooms -->
         <form method="post">
             <label for="nom_salle">Nom de la salle:</label>
-            <input type="text" name="nom_salle" required>
+            <label>
+                <input type="text" name="nom_salle" required>
+            </label>
             <label for="type">Type:</label>
-            <input type="text" name="type" required>
+            <label>
+                <input type="text" name="type" required>
+            </label>
             <label for="capacite">Capacité:</label>
-            <input type="number" name="capacite" required>
+            <label>
+                <input type="number" name="capacite" required>
+            </label>
             <label for="nom_bat">Nom du bâtiment:</label>
-            <input type="text" name="nom_bat" required>
+            <label>
+                <input type="text" name="nom_bat" required>
+            </label>
             <input type="submit" name="create_salle" value="Créer Salle">
         </form>
         <form method="post">
             <label for="nom_salle">Nom de la salle à supprimer:</label>
-            <input type="text" name="nom_salle" required>
+            <label>
+                <input type="text" name="nom_salle" required>
+            </label>
             <input type="submit" name="delete_salle" value="Supprimer Salle">
         </form>
 
         <h2>Gestion des Capteurs</h2>                                           <!-- Forms for sensors -->
         <form method="post">
             <label for="nom_capteur">Nom du capteur:</label>
-            <input type="text" name="nom_capteur" required>
+            <label>
+                <input type="text" name="nom_capteur" required>
+            </label>
             <label for="type">Type:</label>
-            <input type="text" name="type" required>
+            <label>
+                <input type="text" name="type" required>
+            </label>
             <label for="unite">Unité:</label>
-            <input type="text" name="unite" required>
+            <label>
+                <input type="text" name="unite" required>
+            </label>
             <label for="nom_salle">Nom de la salle:</label>
-            <input type="text" name="nom_salle" required>
+            <label>
+                <input type="text" name="nom_salle" required>
+            </label>
             <input type="submit" name="create_capteur" value="Créer Capteur">
         </form>
         <form method="post">
             <label for="nom_capteur">Nom du capteur à supprimer:</label>
-            <input type="text" name="nom_capteur" required>
+            <label>
+                <input type="text" name="nom_capteur" required>
+            </label>
             <input type="submit" name="delete_capteur" value="Supprimer Capteur">
         </form>
     </div>

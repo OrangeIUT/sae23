@@ -16,9 +16,9 @@ include 'db_connect.php';
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>SAE23 gestion XXX</title>
+    <title>SAE23 - Gestion bâtiment</title>
     <meta http-equiv="refresh" content="120" /> <!-- Will refresh page every 2 minutes -->
-    <link rel="stylesheet" type="text/css" href="PAGE CSS" /> <!-- Link to CSS file -->
+    <link rel="stylesheet" type="text/css" href="styles/style.css" /> <!-- Link to CSS file -->
 </head>
 
 <body>
