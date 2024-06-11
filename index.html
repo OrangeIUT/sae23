@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>SAE23 - Accueil</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css" /> <!-- METTRE CSS ICI -->
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/> <!-- METTRE CSS ICI -->
 </head>
 
 <body>
-    <header>
-        <table>
-            <tr>
-                <td><a href="data.php">Données</a></td>
-                <td><a href="login_gestion.php">Gestion</a></td>
-                <td><a href="login_admin.php">Administration</a></td>            <!-- INSERT PHP PAGE FOR LOGIN -->
-                <td><a href="gantt.html">Gestion du groupe</a></td>
-                <td><a href="localhost:1880/ui/">Grafana</a></td>                             <!-- INSERT GRAFANA LINK -->
-                <td><a href="mentions.html">Mentions légales</a></td>
-            </tr>
-        </table> <!-- Bouton pour retourner sur la page précédence -->
-    </header>
-    <div>                       
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="data.php">Données</a></li>
+            <li><a href="login_gestion.php">Gestion</a></li>
+            <li><a href="login_admin.php">Administration</a></li>
+            <li><a href="gantt.html">Gestion de projet</a></li>
+            <li><a href="http://localhost:1880/ui">Grafana</a></li>
+            <li><a href="mentions.html">Mentions légales</a></li>
+        </ul>
+    </nav>
+</header>
+<div>
     <h1>SAE 23</h1>
-    <p>La saé 23 consiste à récupérer des données de capteurs à l&rsquo;aide d&rsquo;un broker mqtt, les inscrire dans une table sql, et ensuite les afficher sur ce site dynamiquement. Cette page d&rsquo;acceuil permet d&rsquo;accéder à l&rsquo;administration du site, sa gestion, notre organisation pour ce projet, et la consultation des données en cliquant sur les boutons dans le header:</p>
-    </div>                      
+    <p>La SAE 23 consiste à récupérer des données de capteurs à l&rsquo;aide d&rsquo;un broker MQTT, les inscrire dans
+        une table SQL, et ensuite les afficher sur ce site dynamiquement. Cette page d&rsquo;accueil permet d&rsquo;accéder
+        à l&rsquo;administration du site, sa gestion, notre organisation pour ce projet, et la consultation des données
+        en cliquant sur les boutons dans la barre de navigation.</p>
+</div>
 </body>
 </html>

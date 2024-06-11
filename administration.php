@@ -50,98 +50,98 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>SAE23 - Administration</title>
-    <meta http-equiv="refresh" content="120" /> <!-- Will refresh page every 2 minutes -->
-    <link rel="stylesheet" type="text/css" href="styles/style.css" /> <!-- Link to CSS file -->
+    <meta http-equiv="refresh" content="120"/> <!-- Will refresh page every 2 minutes -->
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/> <!-- Link to CSS file -->
 </head>
 
 <body>
-    <header>
-        <table>
-            <tr>
-                <td><h3><a href="logout.php">Déconnexion</a></h3></td><!-- Destroy session cookie -->
-                <td><h3><a href="index.html">Retour</a></h3></td>
-            </tr>
-        </table>
-    </header>
-    <div>
-        <h2>Gestion des Bâtiments</h2>                                           <!-- Forms for building -->
-        <form method="post">
-            <label for="nom_bat">Nom du bâtiment:</label>
-            <label>
-                <input type="text" name="nom_bat" required>
-            </label>
-            <label for="nom_gest">Nom du gestionnaire:</label>
-            <label>
-                <input type="text" name="nom_gest" required>
-            </label>
-            <input type="submit" name="create_batiment" value="Créer Bâtiment">
-        </form>
-        <form method="post">
-            <label for="nom_bat">Nom du bâtiment à supprimer:</label>
-            <label>
-                <input type="text" name="nom_bat" required>
-            </label>
-            <input type="submit" name="delete_batiment" value="Supprimer Bâtiment">
-        </form>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="logout.php">Déconnexion</a></li>
+        </ul>
+    </nav>
+</header>
+<div>
+    <h2>Gestion des Bâtiments</h2>                                           <!-- Forms for building -->
+    <form method="post">
+        <label for="nom_bat">Nom du bâtiment:</label>
+        <label>
+            <input type="text" name="nom_bat" required>
+        </label>
+        <label for="nom_gest">Nom du gestionnaire:</label>
+        <label>
+            <input type="text" name="nom_gest" required>
+        </label>
+        <input type="submit" name="create_batiment" value="Créer Bâtiment">
+    </form>
+    <form method="post">
+        <label for="nom_bat">Nom du bâtiment à supprimer:</label>
+        <label>
+            <input type="text" name="nom_bat" required>
+        </label>
+        <input type="submit" name="delete_batiment" value="Supprimer Bâtiment">
+    </form>
 
-        <h2>Gestion des Salles</h2>                                           <!-- Forms for rooms -->
-        <form method="post">
-            <label for="nom_salle">Nom de la salle:</label>
-            <label>
-                <input type="text" name="nom_salle" required>
-            </label>
-            <label for="type">Type:</label>
-            <label>
-                <input type="text" name="type" required>
-            </label>
-            <label for="capacite">Capacité:</label>
-            <label>
-                <input type="number" name="capacite" required>
-            </label>
-            <label for="nom_bat">Nom du bâtiment:</label>
-            <label>
-                <input type="text" name="nom_bat" required>
-            </label>
-            <input type="submit" name="create_salle" value="Créer Salle">
-        </form>
-        <form method="post">
-            <label for="nom_salle">Nom de la salle à supprimer:</label>
-            <label>
-                <input type="text" name="nom_salle" required>
-            </label>
-            <input type="submit" name="delete_salle" value="Supprimer Salle">
-        </form>
+    <h2>Gestion des Salles</h2>                                           <!-- Forms for rooms -->
+    <form method="post">
+        <label for="nom_salle">Nom de la salle:</label>
+        <label>
+            <input type="text" name="nom_salle" required>
+        </label>
+        <label for="type">Type:</label>
+        <label>
+            <input type="text" name="type" required>
+        </label>
+        <label for="capacite">Capacité:</label>
+        <label>
+            <input type="number" name="capacite" required>
+        </label>
+        <label for="nom_bat">Nom du bâtiment:</label>
+        <label>
+            <input type="text" name="nom_bat" required>
+        </label>
+        <input type="submit" name="create_salle" value="Créer Salle">
+    </form>
+    <form method="post">
+        <label for="nom_salle">Nom de la salle à supprimer:</label>
+        <label>
+            <input type="text" name="nom_salle" required>
+        </label>
+        <input type="submit" name="delete_salle" value="Supprimer Salle">
+    </form>
 
-        <h2>Gestion des Capteurs</h2>                                           <!-- Forms for sensors -->
-        <form method="post">
-            <label for="nom_capteur">Nom du capteur:</label>
-            <label>
-                <input type="text" name="nom_capteur" required>
-            </label>
-            <label for="type">Type:</label>
-            <label>
-                <input type="text" name="type" required>
-            </label>
-            <label for="unite">Unité:</label>
-            <label>
-                <input type="text" name="unite" required>
-            </label>
-            <label for="nom_salle">Nom de la salle:</label>
-            <label>
-                <input type="text" name="nom_salle" required>
-            </label>
-            <input type="submit" name="create_capteur" value="Créer Capteur">
-        </form>
-        <form method="post">
-            <label for="nom_capteur">Nom du capteur à supprimer:</label>
-            <label>
-                <input type="text" name="nom_capteur" required>
-            </label>
-            <input type="submit" name="delete_capteur" value="Supprimer Capteur">
-        </form>
-    </div>
+    <h2>Gestion des Capteurs</h2>                                           <!-- Forms for sensors -->
+    <form method="post">
+        <label for="nom_capteur">Nom du capteur:</label>
+        <label>
+            <input type="text" name="nom_capteur" required>
+        </label>
+        <label for="type">Type:</label>
+        <label>
+            <input type="text" name="type" required>
+        </label>
+        <label for="unite">Unité:</label>
+        <label>
+            <input type="text" name="unite" required>
+        </label>
+        <label for="nom_salle">Nom de la salle:</label>
+        <label>
+            <input type="text" name="nom_salle" required>
+        </label>
+        <input type="submit" name="create_capteur" value="Créer Capteur">
+    </form>
+    <form method="post">
+        <label for="nom_capteur">Nom du capteur à supprimer:</label>
+        <label>
+            <input type="text" name="nom_capteur" required>
+        </label>
+        <input type="submit" name="delete_capteur" value="Supprimer Capteur">
+    </form>
+</div>
 </body>
 </html>
