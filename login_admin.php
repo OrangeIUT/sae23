@@ -2,10 +2,8 @@
 session_start();
 
 // Check if connexion is already active using cookies
-if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] === 'true') {
-    if ($_COOKIE['user_type'] === 'admin') {
-        header("Location: administration.php");
-    }
+if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] === 'true' && isset($_COOKIE['user_type']) && $_COOKIE['user_type'] === 'admin'){
+    header("Location: administration.php");
     exit;
 }
 
