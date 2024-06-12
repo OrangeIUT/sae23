@@ -10,6 +10,7 @@ if (!isset($_COOKIE['loggedin']) || $_COOKIE['loggedin'] !== 'true' || !isset($_
 // Database login
 include 'db_connect.php';
 
+echo $_COOKIE['building_name'];
 // Get building name from cookie
 $building_name = $_COOKIE['building_name'];
 ?>
