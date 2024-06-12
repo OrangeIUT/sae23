@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user_type = 'gestionnaire';
         // Building name: in 'batiment' table, get the name of the building where the manager works
         $building_sql = "SELECT nom_bat FROM batiment WHERE nom_gest = '$username'";
-        $building_result = $conn->query($building_sql);
+        $building_result = $conn->query($building_sql)->fetch_assoc()['nom_bat'];
 
         // Set cookies for logged in status, user type and building name
         setcookie('loggedin', 'true', time() + (86400 * 30), "/"); // 30 days
