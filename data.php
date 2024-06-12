@@ -2,40 +2,25 @@
 // Database login
 include 'db_connect.php';
 
+// Get the last value from each active sensor
 $sql = "
-SELECT batiment.nom_bat, salle.nom_salle, capteur.nom_capteur, mesure.date, mesure.valeur, capteur.unite
-FROM capteur
+SELECT batiment.nom_bat, salle.nom_salle, mesure.date, mesure.valeur, capteur.unite
+FROM mesure
+JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
 JOIN salle ON capteur.nom_salle = salle.nom_salle
 JOIN batiment ON salle.nom_bat = batiment.nom_bat
-JOIN (
-    SELECT nom_capteur, MAX(date) as max_date 
-    FROM mesure
-    GROUP BY nom_capteur
-) latest ON c.nom_capteur = latest.nom_capteur
-JOIN mesure ON latest.nom_capteur = mesure.nom_capteur AND latest.max_date = mesure.date
 WHERE capteur.active = 1
-ORDER BY batiment.nom_bat, salle.nom_salle, capteur.nom_capteur";
-
+ORDER BY mesure.date DESC";
 $result = $conn->query($sql);
 
-// Check if the query was successful before attempting to fetch results
-if ($result) {
-    if ($result->num_rows > 0) {
-        $sensors_data = [];
-        while ($row = $result->fetch_assoc()) {
-            $sensors_data[$row['nom_bat']][$row['nom_salle']][] = $row;
-        }
-    } else {
-        $sensors_data = [];
+// Loop through the results and create table rows
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
     }
 } else {
-    // Handle the case where the query fails
-    echo "Error executing SQL query: " . $conn->error;
-    // You might want to log this error for further investigation
+    echo "<tr><td colspan='4'>No data found</td></tr>";
 }
-
-// Close the connection
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -71,20 +56,6 @@ $conn->close();
                 <th>Valeur</th>
             </tr>
 
-            <?php
-            foreach ($sensors_data as $building => $rooms) {
-                foreach ($rooms as $room => $sensors) {
-                    foreach ($sensors as $sensor) {
-                        echo "<tr>";
-                        echo "<td>" . $building . "</td>";
-                        echo "<td>" . $room . "</td>";
-                        echo "<td>" . $sensor['date'] . "</td>";
-                        echo "<td>" . $sensor['valeur'] . " " . $sensor['unite'] . "</td>";
-                        echo "</tr>";
-                    }
-                }
-            }
-            ?>
         </table>
     </section>
 </main>
