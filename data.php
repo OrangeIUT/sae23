@@ -33,7 +33,7 @@ $types = array(
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $to_add .= "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $row["type"] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
+        $to_add .= "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $types[$row["type"]] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
     }
 } else {
     $to_add = "<tr><td colspan='5'>No data found</td></tr>";
