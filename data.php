@@ -3,7 +3,7 @@
 include 'db_connect.php';
 
 $sql = "
-SELECT b.nom_bat, s.nom_salle, c.nom_capteur, m.date, m.valeur, c.unite_mesure 
+SELECT b.nom_bat, s.nom_salle, c.nom_capteur, m.date, m.valeur, c.unite
 FROM capteur c
 JOIN salle s ON c.nom_salle = s.nom_salle
 JOIN batiment b ON s.nom_bat = b.nom_bat
@@ -13,7 +13,7 @@ JOIN (
     GROUP BY nom_capteur
 ) latest ON c.nom_capteur = latest.nom_capteur
 JOIN mesure m ON latest.nom_capteur = m.nom_capteur AND latest.max_date = m.date
-WHERE c.actif = 1
+WHERE c.active = 1
 ORDER BY b.nom_bat, s.nom_salle, c.nom_capteur";
 
 $result = $conn->query($sql);
