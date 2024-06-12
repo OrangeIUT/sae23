@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
 
 // Fetch last values
 $sql = "
-                SELECT mesure.date, capteur.type, mesure.valeur, salle.nom_salle
+                SELECT mesure.date, capteur.type, mesure.valeur, capteur.unite, salle.nom_salle
                 FROM mesure
                 JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
                 JOIN salle ON capteur.nom_salle = salle.nom_salle
@@ -67,7 +67,7 @@ $types = array(
 // Loop through the results and create table rows
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $history="<tr><td>" . $row["date"] . "</td><td>" . $types[$row["type"]] . "</td><td>" . $row["valeur"] . "</td><td>" . $row["nom_salle"] . "</td></tr>";
+        $history="<tr><td>" . $row["date"] . "</td><td>" . $types[$row["type"]] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td><td>" . $row["nom_salle"] . "</td></tr>";
     }
 } else {
     $history="<tr><td colspan='4'>Pas de données</td></tr>";
