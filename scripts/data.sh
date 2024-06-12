@@ -17,7 +17,7 @@ do
 	# If room doesn't exist, create it
 	if [ "$room_exist" -eq 0 ]
   then
-    /opt/lampp/bin/mysql -D "$database" -e "INSERT INTO salle (nom_salle, type, capacite, batiment) VALUES ('$room', NA, 0, '$building');"
+    /opt/lampp/bin/mysql -D "$database" -e "INSERT INTO salle (nom_salle, type, capacite, batiment) VALUES ('$room', 'NA', 0, '$building');"
   fi
 
   # for each metric, check if the sensor exists in the database, if not, create it
