@@ -2,7 +2,7 @@
 session_start();
 
 // Check if connexion is already active using cookies
-if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] === 'true' && isset($_COOKIE['user_type']) && $_COOKIE['user_type'] === 'gestionnaire'){
+if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] === 'true' && isset($_COOKIE['user_type']) && $_COOKIE['user_type'] === 'gestionnaire') {
     header("Location: gestion.php");
     exit;
 }
@@ -26,13 +26,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $gest_result->fetch_assoc();
         $user_type = 'gestionnaire';
         // Building name: in 'batiment' table, get the name of the building where the manager works
-        $building_sql = "SELECT nom_bat FROM batiment WHERE nom_gest = '$username'";
-        $building_result = $conn->query($building_sql)->fetch_assoc()['nom_bat'];
 
-        // Set cookies for logged in status, user type and building name
-        setcookie('loggedin', 'true', time() + (86400 * 30), "/"); // 30 days
-        setcookie('user_type', $user_type, time() + (86400 * 30), "/");
-        setcookie('building_name', $building_result, time() + (86400 * 30), "/");
+        $building_sql = "SELECT nom_bat FROM batiment WHERE nom_gest = ?";
+        $stmt = $conn->prepare($building_sql);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $building_result = $result->fetch_assoc()['nom_bat'];
+
+            // Set cookies for logged in status, user type and building name
+            setcookie('loggedin', 'true', time() + (86400 * 30), "/"); // 30 days
+            setcookie('user_type', $user_type, time() + (86400 * 30), "/");
+            setcookie('building_name', $building_result, time() + (86400 * 30), "/");
+        } else {
+            // Handle case where no building is found for the given user
+            echo "Aucun bâtiment trouvé pour l'utilisateur.";
+        }
+
+        $stmt->close();
 
         // Redirection
         header("Location: gestion.php");
