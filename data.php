@@ -4,7 +4,7 @@ include 'db_connect.php';
 
 // Get the last value from each active sensor
 $sql = "
-SELECT batiment.nom_bat, salle.nom_salle, mesure.date, mesure.valeur, capteur.unite
+SELECT batiment.nom_bat, salle.nom_salle, mesure.date, capteur.type, mesure.valeur, capteur.unite
 FROM mesure
 JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
 JOIN salle ON capteur.nom_salle = salle.nom_salle
@@ -18,10 +18,19 @@ $result = $conn->query($sql);
 // Loop through the results and create table rows
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $to_add = "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
+        // Dictionary with types from database linked to 'showable' types
+        $types = array(
+            "temperature" => "Température",
+            "humidity" => "Humidité",
+            "co2" => "CO2",
+            "tvoc" => "TVOC",
+            "illumination" => "Luminosité",
+            "pressure" => "Pression",
+        );
+        $to_add = "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $types[$row["type"]] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
     }
 } else {
-    $to_add = "<tr><td colspan='4'>No data found</td></tr>";
+    $to_add = "<tr><td colspan='5'>No data found</td></tr>";
 }
 ?>
 
@@ -54,6 +63,7 @@ if ($result->num_rows > 0) {
             <tr>
                 <th>Bâtiment</th>
                 <th>Salle</th>
+                <th>Type</th>
                 <th>Date</th>
                 <th>Valeur</th>
             </tr>
