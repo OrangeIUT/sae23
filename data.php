@@ -65,9 +65,9 @@ $conn->close();
         <h2>Dernières valeurs des capteurs</h2>
         <?php if (!empty($sensors_data)): ?>
             <?php foreach ($sensors_data as $batiment => $salles): ?>
-                <h3>Bâtiment: <?php echo $batiment; ?></h3>
+                <h3>Bâtiment: </h3> <!-- batiment request -->
                 <?php foreach ($salles as $salle => $capteurs): ?>
-                    <h4>Salle: <?php echo $salle; ?></h4>
+                    <h4>Salle: </h4> <!-- salle request -->
                     <table>
                         <tr>
                             <th>Capteur</th>
@@ -75,12 +75,11 @@ $conn->close();
                             <th>Valeur</th>
                             <th>Unité</th>
                         </tr>
-                        <?php foreach ($capteurs as $sensor): ?>
                             <tr>
-                                <td><?php echo $sensor['nom_capteur']; ?></td>
-                                <td><?php echo $sensor['date']; ?></td>
-                                <td><?php echo $sensor['valeur']; ?></td>
-                                <td><?php echo $sensor['unite_mesure']; ?></td>
+                                <td></td>
+                                <td><</td> <!-- Requests here for latest values -->
+                                <td></td>
+                                <td></td>
                             </tr>
                         <?php endforeach; ?>
                     </table>
