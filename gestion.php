@@ -29,7 +29,7 @@ FROM mesure
 JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
 JOIN salle ON capteur.nom_salle = salle.nom_salle
 JOIN batiment ON salle.nom_bat = batiment.nom_bat
-WHERE batiment.nom_bat = '$building_name'
+WHERE batiment.nom_bat = '$building_name' AND capteur.active = 1
 ORDER BY mesure.date DESC
 LIMIT 10;
 ";
@@ -54,7 +54,7 @@ foreach ($types as $type => $type_name) {
     JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
     JOIN salle ON capteur.nom_salle = salle.nom_salle
     JOIN batiment ON salle.nom_bat = batiment.nom_bat
-    WHERE capteur.type = '$type' AND batiment.nom_bat = '$building_name';
+    WHERE capteur.type = '$type' AND batiment.nom_bat = '$building_name' WHERE capteur.active = 1;
     ";
 
     $result = $conn->query($sql);
