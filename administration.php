@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (isset($_POST['create_salle'])) { // Process for room
         $nom_salle = $_POST['nom_salle'];
         $type = $_POST['type'];
+
         $capacite = $_POST['capacite'];
         $nom_bat = $_POST['nom_bat'];
         $sql = "INSERT INTO salle (nom_salle, type, capacite, nom_bat) VALUES ('$nom_salle', '$type', '$capacite', '$nom_bat')";

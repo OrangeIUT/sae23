@@ -7,6 +7,8 @@ mosquitto_sub -h mqtt.iut-blagnac.fr -p 1883 -t AM107/by-room/+/data | while rea
 do
   building=$(echo "$line" | jq '.[1].room' -r | head -c 1) # Get the first character of the building name
 	room=$(echo "$line" | jq '.[1].room' -r)
+	# replaces accents by accentless characters
+	room=$(echo "$room" | sed 's/[éèêë]/e/g; s/[àâä]/a/g; s/[ùûü]/u/g; s/[îï]/i/g; s/[ôö]/o/g')
 	datetime=$(date +'%Y-%m-%d %H:%M:%S')
 
   # metrics is an array containing the names of the metrics, and units their corresponding units
