@@ -2,17 +2,35 @@
 // Database login
 include 'db_connect.php';
 
-// Get the last value from each active sensor
+// Get the value from each active sensor
+// use latest
 $sql = "
-SELECT batiment.nom_bat, salle.nom_salle, mesure.date, capteur.type, mesure.valeur, capteur.unite
-FROM mesure
-JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
-JOIN salle ON capteur.nom_salle = salle.nom_salle
-JOIN batiment ON salle.nom_bat = batiment.nom_bat
-WHERE capteur.active = 1
-GROUP BY capteur.nom_capteur
-ORDER BY mesure.date DESC
-LIMIT 1";
+WITH DernieresMesures AS (
+    SELECT 
+        mesure.date, 
+        mesure.valeur, 
+        mesure.unite, 
+        capteur.nom_salle, 
+        batiment.nom_bat, 
+        capteur.type,
+        ROW_NUMBER() OVER (PARTITION BY mesure.nom_capteur ORDER BY mesure.date DESC) as rn
+    FROM mesure
+    JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
+    JOIN salle ON capteur.nom_salle = salle.nom_salle
+    JOIN batiment ON salle.nom_bat = batiment.nom_bat
+    WHERE capteur.active = 1
+)
+SELECT 
+    date, 
+    valeur, 
+    unite, 
+    nom_salle, 
+    nom_bat, 
+    type
+FROM DernieresMesures
+WHERE rn = 1
+ORDER BY date DESC;
+";
 $result = $conn->query($sql);
 
 // Loop through the results and create table rows
