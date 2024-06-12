@@ -5,46 +5,31 @@ include 'db_connect.php';
 // Get the value from each active sensor
 // use latest
 $sql = "
-SELECT 
-    mesure.date, 
-    mesure.valeur, 
-    mesure.unite, 
-    capteur.nom_salle, 
-    batiment.nom_bat, 
-    capteur.type
+SELECT batiment.nom_bat, salle.nom_salle, capteur.type, mesure.date, mesure.valeur, capteur.unite
 FROM mesure
 JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
 JOIN salle ON capteur.nom_salle = salle.nom_salle
 JOIN batiment ON salle.nom_bat = batiment.nom_bat
 JOIN (
-    SELECT 
-        MAX(date) AS max_date, 
-        nom_capteur
+    SELECT nom_capteur, MAX(date) AS max_date
     FROM mesure
     GROUP BY nom_capteur
 ) AS latest
-ON mesure.date = latest.max_date AND mesure.nom_capteur = latest.nom_capteur
-ORDER BY mesure.date DESC";
+ON mesure.nom_capteur = latest.nom_capteur AND mesure.date = latest.max_date
+WHERE capteur.active = 1
+";
 
 $result = $conn->query($sql);
 
-// Loop through the results and create table rows
+$to_add = "";
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Dictionary with types from database linked to 'showable' types
-        $types = array(
-            "temperature" => "Température",
-            "humidity" => "Humidité",
-            "co2" => "CO2",
-            "tvoc" => "TVOC",
-            "illumination" => "Luminosité",
-            "pressure" => "Pression",
-        );
-        $to_add = "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $types[$row["type"]] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
+        $to_add .= "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $row["type"] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
     }
 } else {
     $to_add = "<tr><td colspan='5'>No data found</td></tr>";
 }
+
 ?>
 
 <!DOCTYPE html>
