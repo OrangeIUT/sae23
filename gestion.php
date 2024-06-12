@@ -52,7 +52,7 @@ $sql = "
                 JOIN salle ON capteur.nom_salle = salle.nom_salle
                 JOIN batiment ON salle.nom_bat = batiment.nom_bat
                 WHERE batiment.nom_bat = '$building_name' AND capteur.active = 1
-                GROUP BY capteur.type";
+                ";
 $result = $conn->query($sql);
 
 $types = array(
