@@ -66,6 +66,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nom_capteur = $_POST['nom_capteur'];
         $sql = "DELETE FROM capteur WHERE nom_capteur = '$nom_capteur'";
         $conn->query($sql);
+    } elseif (isset($_POST['activate_capteur'])) {
+        $nom_capteur = $_POST['nom_capteur'];
+        $sql = "UPDATE capteur SET active = 1 WHERE nom_capteur = '$nom_capteur'";
+        $conn->query($sql);
+    } elseif (isset($_POST['deactivate_capteur'])) {
+        $nom_capteur = $_POST['nom_capteur'];
+        $sql = "UPDATE capteur SET active = 0 WHERE nom_capteur = '$nom_capteur'";
+        $conn->query($sql);
     } elseif (isset($_POST['create_gest'])) { // Process for adding a manager
         $nom_gest = $_POST['nom_gest'];
         $mdp_gest = $_POST['mdp_gest'];
@@ -178,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label>
                 <input type="text" name="nom_salle" maxlength="35" required>
             </label>
-            <label for="type">Type (CM, TD, TP ou NA) :</label>
+            <label for="type">Type :</label>
             <label>
                 <select name="type" required>
                     <option value="CM">CM</option>
@@ -269,6 +277,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </select>
             </label>
             <input type="submit" name="delete_capteur" value="Supprimer capteur">
+        </form>
+
+        <form method="post">
+            <h3>Activer un capteur</h3>
+            <label for="nom_capteur">Nom du capteur à activer :</label>
+            <label>
+                <select name="nom_capteur" required>
+                    <?php
+                    // Fetching existing sensors
+                    $sql_sensors = "SELECT nom_capteur FROM capteur WHERE active=0";
+                    $result_sensors = $conn->query($sql_sensors);
+
+                    if ($result_sensors->num_rows > 0) {
+                        while ($row = $result_sensors->fetch_assoc()) {
+                            echo "<option value='" . $row['nom_capteur'] . "'>" . $row['nom_capteur'] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
+            </label>
+            <input type="submit" name="activate_capteur" value="Activer capteur">
+        </form>
+
+        <form method="post">
+            <h3>Désctiver un capteur</h3>
+            <label for="nom_capteur">Nom du capteur à désactiver :</label>
+            <label>
+                <select name="nom_capteur" required>
+                    <?php
+                    // Fetching existing sensors
+                    $sql_sensors = "SELECT nom_capteur FROM capteur WHERE active=1";
+                    $result_sensors = $conn->query($sql_sensors);
+
+                    if ($result_sensors->num_rows > 0) {
+                        while ($row = $result_sensors->fetch_assoc()) {
+                            echo "<option value='" . $row['nom_capteur'] . "'>" . $row['nom_capteur'] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
+            </label>
+            <input type="submit" name="deactivate_capteur" value="Désactiver capteur">
         </form>
     </section>
     <section>
