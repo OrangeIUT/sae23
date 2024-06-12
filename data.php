@@ -17,13 +17,15 @@ JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
 JOIN salle ON capteur.nom_salle = salle.nom_salle
 JOIN batiment ON salle.nom_bat = batiment.nom_bat
 JOIN (
-    SELECT nom_capteur, MAX(date) AS max_date
+    SELECT 
+        MAX(date) AS max_date, 
+        nom_capteur
     FROM mesure
     GROUP BY nom_capteur
-) AS dernieres_dates ON mesure.nom_capteur = dernieres_dates.nom_capteur AND mesure.date = dernieres_dates.max_date
-WHERE capteur.active = 1
-ORDER BY mesure.date DESC;
-";
+) AS latest
+ON mesure.date = latest.max_date AND mesure.nom_capteur = latest.nom_capteur
+ORDER BY mesure.date DESC";
+
 $result = $conn->query($sql);
 
 // Loop through the results and create table rows
