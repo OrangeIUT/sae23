@@ -13,18 +13,6 @@ include 'db_connect.php';
 // Get building name from cookie
 $building_name = $_COOKIE['building_name'];
 
-
-// Fetch min, max and avg values for each type of sensor in the building
-$sql = "
-                SELECT capteur.type, MIN(mesure.valeur) AS min, MAX(mesure.valeur) AS max, AVG(mesure.valeur) AS avg
-                FROM mesure
-                JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
-                JOIN salle ON capteur.nom_salle = salle.nom_salle
-                JOIN batiment ON salle.nom_bat = batiment.nom_bat
-                WHERE batiment.nom_bat = '$building_name' AND capteur.active = 1
-                GROUP BY capteur.type";
-$result = $conn->query($sql);
-
 $types = array(
     "temperature" => "Température",
     "humidity" => "Humidité",
@@ -34,46 +22,51 @@ $types = array(
     "pressure" => "Pression",
 );
 
-// Loop through the results and create table rows
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $stats="<tr><td>" . $types[$row["type"]] . "</td><td>" . $row["min"] . "</td><td>" . $row["max"] . "</td><td>" . $row["avg"] . "</td></tr>";
-    }
-} else {
-    $stats="<tr><td colspan='4'>Pas de données</td></tr>";
-}
-
-
-// Fetch last values
+// Get last 10 values
 $sql = "
-                SELECT mesure.date, capteur.type, mesure.valeur, capteur.unite, salle.nom_salle
-                FROM mesure
-                JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
-                JOIN salle ON capteur.nom_salle = salle.nom_salle
-                JOIN batiment ON salle.nom_bat = batiment.nom_bat
-                WHERE batiment.nom_bat = '$building_name' AND capteur.active = 1
-                ";
+SELECT capteur.type, mesure.date, mesure.valeur, capteur.unite, salle.nom_salle
+FROM mesure
+JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
+JOIN salle ON capteur.nom_salle = salle.nom_salle
+JOIN batiment ON salle.nom_bat = batiment.nom_bat
+ORDER BY mesure.date DESC
+LIMIT 10;
+";
+
 $result = $conn->query($sql);
 
-$types = array(
-    "temperature" => "Température",
-    "humidity" => "Humidité",
-    "co2" => "CO&#8322;",
-    "tvoc" => "TVOC",
-    "illumination" => "Luminosité",
-    "pressure" => "Pression",
-);
-
-// Loop through the results and create table rows
+$history = "";
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $history="<tr><td>" . $row["date"] . "</td><td>" . $types[$row["type"]] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td><td>" . $row["nom_salle"] . "</td></tr>";
+        $history .= "<tr><td>" . $row["date"] . "</td><td>" . $types[$row["type"]] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td><td>" . $row["nom_salle"] . "</td></tr>";
     }
 } else {
-    $history="<tr><td colspan='4'>Pas de données</td></tr>";
+    $history = "<tr><td colspan='4'>Aucune donnée trouvée</td></tr>";
 }
 
+// Get statistics
+$stats = "";
+foreach ($types as $type => $type_name) {
+    $sql = "
+    SELECT MIN(mesure.valeur) AS min_val, MAX(mesure.valeur) AS max_val, AVG(mesure.valeur) AS avg_val
+    FROM mesure
+    JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
+    JOIN salle ON capteur.nom_salle = salle.nom_salle
+    JOIN batiment ON salle.nom_bat = batiment.nom_bat
+    WHERE capteur.type = '$type';
+    ";
 
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $stats .= "<tr><td>" . $type_name . "</td><td>" . $row["min_val"] . "</td><td>" . $row["max_val"] . "</td><td>" . $row["avg_val"] . "</td></tr>";
+    } else {
+        $stats .= "<tr><td>" . $type_name . "</td><td colspan='3'>Aucune donnée trouvée</td></tr>";
+    }
+}
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
