@@ -10,16 +10,18 @@ JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
 JOIN salle ON capteur.nom_salle = salle.nom_salle
 JOIN batiment ON salle.nom_bat = batiment.nom_bat
 WHERE capteur.active = 1
-ORDER BY mesure.date DESC";
+GROUP BY capteur.nom_capteur
+ORDER BY mesure.date DESC
+LIMIT 1";
 $result = $conn->query($sql);
 
 // Loop through the results and create table rows
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
+        $to_add = "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
     }
 } else {
-    echo "<tr><td colspan='4'>No data found</td></tr>";
+    $to_add = "<tr><td colspan='4'>No data found</td></tr>";
 }
 ?>
 
@@ -56,6 +58,7 @@ if ($result->num_rows > 0) {
                 <th>Valeur</th>
             </tr>
 
+            <?php echo $to_add; ?>
         </table>
     </section>
 </main>

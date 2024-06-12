@@ -13,7 +13,7 @@ do
 
   # metrics is an array containing the names of the metrics, and units their corresponding units
   metrics=("temperature" "humidity" "co2" "tvoc" "illumination" "pressure")
-  units=("°C" "%" "ppm" "ppm" "lux" "hPa")
+  units=("&deg;C" "%" "ppm" "ppm" "lux" "hPa")
 
 	room_exist=$(/opt/lampp/bin/mysql -D "$database" -sse "SELECT COUNT(*) FROM salle WHERE nom_salle='$room';")
 	# If room doesn't exist, create it
