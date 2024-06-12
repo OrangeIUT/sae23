@@ -5,31 +5,24 @@ include 'db_connect.php';
 // Get the value from each active sensor
 // use latest
 $sql = "
-WITH DernieresMesures AS (
-    SELECT 
-        mesure.date, 
-        mesure.valeur, 
-        mesure.unite, 
-        capteur.nom_salle, 
-        batiment.nom_bat, 
-        capteur.type,
-        ROW_NUMBER() OVER (PARTITION BY mesure.nom_capteur ORDER BY mesure.date DESC) as rn
-    FROM mesure
-    JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
-    JOIN salle ON capteur.nom_salle = salle.nom_salle
-    JOIN batiment ON salle.nom_bat = batiment.nom_bat
-    WHERE capteur.active = 1
-)
 SELECT 
-    date, 
-    valeur, 
-    unite, 
-    nom_salle, 
-    nom_bat, 
-    type
-FROM DernieresMesures
-WHERE rn = 1
-ORDER BY date DESC;
+    mesure.date, 
+    mesure.valeur, 
+    mesure.unite, 
+    capteur.nom_salle, 
+    batiment.nom_bat, 
+    capteur.type
+FROM mesure
+JOIN capteur ON mesure.nom_capteur = capteur.nom_capteur
+JOIN salle ON capteur.nom_salle = salle.nom_salle
+JOIN batiment ON salle.nom_bat = batiment.nom_bat
+JOIN (
+    SELECT nom_capteur, MAX(date) AS max_date
+    FROM mesure
+    GROUP BY nom_capteur
+) AS dernieres_dates ON mesure.nom_capteur = dernieres_dates.nom_capteur AND mesure.date = dernieres_dates.max_date
+WHERE capteur.active = 1
+ORDER BY mesure.date DESC;
 ";
 $result = $conn->query($sql);
 
