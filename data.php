@@ -22,6 +22,15 @@ WHERE capteur.active = 1
 $result = $conn->query($sql);
 
 $to_add = "";
+$types = array(
+    "temperature" => "Température",
+    "humidity" => "Humidité",
+    "co2" => "CO&#8322;",
+    "tvoc" => "TVOC",
+    "illumination" => "Luminosité",
+    "pressure" => "Pression",
+);
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $to_add .= "<tr><td>" . $row["nom_bat"] . "</td><td>" . $row["nom_salle"] . "</td><td>" . $row["type"] . "</td><td>" . $row["date"] . "</td><td>" . $row["valeur"] . $row["unite"] . "</td></tr>";
