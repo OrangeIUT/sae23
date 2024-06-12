@@ -21,7 +21,7 @@ do
   fi
 
   # for each metric, check if the sensor exists in the database, if not, create it
-  for i in "$!{metrics[@]}"
+  for i in "${!metrics[@]}"
   do
     sensor_exist=$(/opt/lampp/bin/mysql -D "$database" -sse "SELECT COUNT(*) FROM capteur WHERE nom_capteur='${room}_${metrics[i]}';")
     if [ "$sensor_exist" -eq 0 ]
